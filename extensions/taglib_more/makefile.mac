@@ -1,0 +1,10 @@
+MZC="/Applications/PLT Scheme v4.0/bin/mzc"
+
+default: taglib_more.dylib
+	cp taglib_more.dylib ../../compiled/native/i386-macosx/3m
+
+taglib_more.dylib: taglib_more.o
+	$(MZC) --ld taglib_more.dylib ++ldf -L/opt/local/lib ++ldf -ltag taglib_more.o 
+	
+taglib_more.o:	taglib_more.cpp
+	$(MZC) --cc ++ccf -I/opt/local/include/taglib taglib_more.cpp

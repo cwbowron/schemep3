@@ -1,0 +1,13 @@
+.DS_Store
+compiled/*
+deprecated/*
+etc/*.db
+etc/test*
+extensions/taglib_more/*.lib
+extensions/taglib_more/*.obj
+extensions/taglib_more/*.dll
+extensions/windows/*.dll
+extensions/windows/*.lib
+extensions/windows/*.obj
+extensions/windows/system-events.3m.c
+screenshots/*
