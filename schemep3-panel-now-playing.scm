@@ -13,7 +13,7 @@
 (require "schemep3-mixins-gui.scm")
 (require "schemep3-file-mover.scm")
 (require "taglib.ss")
-(require "taglib-extended.scm")
+;;;(require "taglib-extended.scm")
 (require "schemep3-context-menu.scm")
 
 (define now-playing-panel%
@@ -51,11 +51,12 @@
         (if (mini-library:member? path)
             (send this append "Mini Libray: Yes")
             (send this append "Mini Libray: No"))
-        (and-let* ([extended-tags (taglib-extended-tags path)])
-          (and-let* ([asin (find-tag extended-tags "ASIN")])
-            (send this append (format "ASIN: ~A" asin) (cut show-ASIN asin)))
-          (and-let* ((brainz-album-id (find-tag extended-tags "MUSICBRAINZ ALBUM ID")))
-            (send this append (format "MusicBrainz Album: ~A" brainz-album-id))))))
+;        (and-let* ([extended-tags (taglib-extended-tags path)])
+;          (and-let* ([asin (find-tag extended-tags "ASIN")])
+;            (send this append (format "ASIN: ~A" asin) (cut show-ASIN asin)))
+;          (and-let* ((brainz-album-id (find-tag extended-tags "MUSICBRAINZ ALBUM ID")))
+;            (send this append (format "MusicBrainz Album: ~A" brainz-album-id))))
+        ))
 
     (define (local-callback control event)
       (cond

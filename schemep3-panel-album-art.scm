@@ -96,7 +96,7 @@
                   (y (center-offset canvas-height scaled-height)))
               (send dc draw-bitmap-section-smooth source-bitmap
                     x y scaled-width scaled-height
-                    0 0 source-width source-height #f))
+                    0 0 source-width source-height 'solid))
             (send dc set-bitmap #f)
             (send this set-label target-bitmap)))))
     

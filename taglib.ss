@@ -22,12 +22,12 @@
 (define taglib 
   (if (equal? (system-type) 'windows)
       (ffi-lib "tag.dll")
-      (ffi-lib "/opt/local/lib/libtag")))
+      (ffi-lib "/usr/local/lib/libtag")))
 
 (define taglib_c 
   (if (equal? (system-type) 'windows)
        (ffi-lib "tag_c.dll")
-       (ffi-lib "/opt/local/lib/libtag_c")))
+       (ffi-lib "/usr/local/lib/libtag_c")))
 
 ;;;
 (define-syntax define-taglib

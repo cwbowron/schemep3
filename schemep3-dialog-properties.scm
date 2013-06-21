@@ -9,7 +9,7 @@
 (require "schemep3-gui-helpers.scm")
 (require "schemep3-database.scm")
 (require "taglib.ss")
-(require "taglib-extended.scm")
+;;;(require "taglib-extended.scm")
 (require "in-alist.ss")
 (require "schemep3-file-mover.scm")
 
@@ -53,7 +53,8 @@
                          "Mini Library: No"))
                (append-category "Technical Information:" (taglib-properties filename))
                (append-category "Base Tags:" (taglib-tags filename))
-               (append-category "Extended Tags:" (taglib-extended-tags filename))])))
+               ;;;(append-category "Extended Tags:" (taglib-extended-tags filename))
+               ])))
     
     (super-new 
      (font (get-medium-mono-font))     

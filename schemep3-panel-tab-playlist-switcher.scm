@@ -7,7 +7,7 @@
 (require "schemep3-mixins-gui.scm")
 (require "schemep3-playlist.scm")
 
-(require mred/private/mrtabgroup)
+(require mred/private/const)
 
 (define tab-playlist-switcher%
   (class (checkable-panel-mixin tab-panel% "Playlist Tab Switcher")
@@ -52,7 +52,7 @@
       (if (and 
            (send event button-down? 'right)
            (or 
-            (is-a? control tab-group%)
+            (is-a? control wx-tab-group<%>)
             (eq? control this)))
           (begin 
             (do-local-context-menu (send event get-x) (send event get-y))

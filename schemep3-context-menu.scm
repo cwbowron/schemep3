@@ -17,8 +17,8 @@
  )
 
 (provide
- ASIN
- show-ASIN
+;; ASIN
+;; show-ASIN
  open-folder
  )
 
@@ -39,7 +39,7 @@
 (require "schemep3-frame-console.scm")
 
 (require "taglib.ss")
-(require "taglib-extended.scm")
+;;(require "taglib-extended.scm")
 
 (define (open-url url-string)
   (send-url url-string))
@@ -67,16 +67,17 @@
           (console:printf "Updating ~A to ~A~%" filename new-count)
           (schemep3-database-update-field db-index 'play_count new-count))))))
   
-(define (update-extended-fields db-index)
-  (let ((filename (schemep3-database-index->filename db-index)))
-    (and-let* ((extended-tags (taglib-extended-tags filename)))
-      (update-last-played db-index filename extended-tags)
-      (update-play-count db-index filename extended-tags))))
+;(define (update-extended-fields db-index)
+;  (let ((filename (schemep3-database-index->filename db-index)))
+;    (and-let* ((extended-tags (taglib-extended-tags filename)))
+;      (update-last-played db-index filename extended-tags)
+;      (update-play-count db-index filename extended-tags))))
 
 (define (context-menu-reload-tags items (force-update? #f))
   (for ((item items))
     (schemep3-database-reload-item item force-update?)
-    (update-extended-fields item)))
+    ;;;(update-extended-fields item)
+    ))
 
 (define (context-menu-reload-tags-force items)
   (context-menu-reload-tags items #t))
@@ -119,29 +120,29 @@
 
 ;;;;;;;;;; end playlist commands
 
-(define (ASIN path)
-  (and-let* ([extended-tags (taglib-extended-tags path)])
-    (find-tag extended-tags "ASIN")))
-
-(define (show-ASIN asin)
-  (and-let* ([url (string-append "http://amazon.com/gp/product/" asin)])
-    (open-url url)))
+;(define (ASIN path)
+;  (and-let* ([extended-tags (taglib-extended-tags path)])
+;    (find-tag extended-tags "ASIN")))
+;
+;(define (show-ASIN asin)
+;  (and-let* ([url (string-append "http://amazon.com/gp/product/" asin)])
+;    (open-url url)))
 
 ;;;(define (show-on-amazon path)
 ;;;  (and-let* ((asin (ASIN path)))
 ;;;    (show-ASIN asin)))
 
-(define (gen-tag-specific-options parent-menu items)
-  (when (for/or ((item items))
-          (ASIN (schemep3-database-index->filename item)))
-    (new menu-item%
-         [parent parent-menu]
-         [label "Find on Amazon"]
-         [callback
-          (lambda (menu event)
-            (for ((item items))
-              (and-let* ((asin (ASIN (schemep3-database-index->filename item))))
-                (show-ASIN asin))))])))
+;(define (gen-tag-specific-options parent-menu items)
+;  (when (for/or ((item items))
+;          (ASIN (schemep3-database-index->filename item)))
+;    (new menu-item%
+;         [parent parent-menu]
+;         [label "Find on Amazon"]
+;         [callback
+;          (lambda (menu event)
+;            (for ((item items))
+;              (and-let* ((asin (ASIN (schemep3-database-index->filename item))))
+;                (show-ASIN asin))))])))
 
 (define (context-menu-export-m3u items)
   (and-let* ((output-file 
@@ -226,7 +227,7 @@
 (file-operations:add (make-file-operation "Reload tags" context-menu-reload-tags))
 (file-operations:add (make-file-operation "Reload Tags [Force]" context-menu-reload-tags-force))
 (file-operations:add (make-file-operation "Export m3u..." context-menu-export-m3u))
-(file-operations:add (make-file-operation-generator gen-tag-specific-options))
+;;(file-operations:add (make-file-operation-generator gen-tag-specific-options))
 (file-operations:add (make-file-operation "Open Folder" context-menu-open-folder))
 (file-operations:add (make-file-operation "Search Album Art" context-menu-search-album-art))
 (file-operations:add (make-file-operation "Psychopomp" psychopomp))

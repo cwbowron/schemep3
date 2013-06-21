@@ -15,20 +15,23 @@
 (require "schemep3-helpers.scm")
 (require "schemep3-backend.scm")
 
-(define get-vlc-exception
-  (let ([vlc-exception (delay (make-vlc-exception #f 0 ""))])
-    (lambda ()
-      (force vlc-exception))))
+;(define get-vlc-exception
+;  (let ([vlc-exception (delay (make-vlc-exception #f 0 ""))])
+;    (lambda ()
+;      (force vlc-exception))))
+;
+;(define (call-vlc vlc-fn . fn-args)
+;  (let ([exception (get-vlc-exception)])
+;    (begin0
+;      (apply vlc-fn (append fn-args (list exception)))
+;      (when (vlc-exception-raised exception)
+;        (error "VLC Exception:"
+;               (vlc-exception-code exception)
+;               (vlc-exception-message exception))))))
 
 (define (call-vlc vlc-fn . fn-args)
-  (let ([exception (get-vlc-exception)])
-    (begin0
-      (apply vlc-fn (append fn-args (list exception)))
-      (when (vlc-exception-raised exception)
-        (error "VLC Exception:"
-               (vlc-exception-code exception)
-               (vlc-exception-message exception))))))
-
+  (apply vlc-fn fn-args))
+  
 (define get-vlc-instance
   (let ([vlc-instance 
          (delay
@@ -94,7 +97,7 @@
     
     (define/public (play file callback)
       (with-finalized-binding
-       (lambda () (call-vlc libvlc_media_new (get-vlc-instance) (path->mrl file)))
+       (lambda () (call-vlc libvlc_media_new_path (get-vlc-instance) (path->mrl file)))
        (lambda (media)
          (with-finalized-binding
           (lambda () (call-vlc libvlc_media_player_new_from_media media))
