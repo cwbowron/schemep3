@@ -55,3 +55,10 @@ Schemep3 is a music playback and database program written in PLT Scheme. It can 
     * id3v1 tag reader
     * id3v2 tag reader
     * estimates playback length (hacky)
+
+## Dependencies
+* PLT Racket
+* SQLite
+* libVLC
+* TagLib
+* LAME
