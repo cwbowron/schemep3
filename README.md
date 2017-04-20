@@ -1,4 +1,3 @@
-# schemep3
 Schemep3 is a music playback and database program written in PLT Scheme. It can playback any audio format that libVLC supports and read tags in any format that TagLib understands. It uses Jay McCarthy’s SQLite module for database access.
 
 ## Features
