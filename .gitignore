@@ -10,4 +10,3 @@ extensions/windows/*.dll
 extensions/windows/*.lib
 extensions/windows/*.obj
 extensions/windows/system-events.3m.c
-screenshots/*
