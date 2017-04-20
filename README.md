@@ -74,3 +74,6 @@ In no particular order:
   * Allow you to manage different libraries
      * Deskstop
      * Portable
+
+<p align="center"><img src="screenshots/minimal.png"/></p>
+<p align="center"><img src="screenshots/full.png" width="400"/></p>
