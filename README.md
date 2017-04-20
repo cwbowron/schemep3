@@ -62,3 +62,15 @@ Schemep3 is a music playback and database program written in PLT Scheme. It can 
 * libVLC
 * TagLib
 * LAME
+
+## To Do (Maybe)
+In no particular order:
+
+* Playlist tree – primitive prototype working
+* Racket based queries
+* Audioscrobbler caching
+* Multiple databases
+  * Open different sqlite db
+  * Allow you to manage different libraries
+     * Deskstop
+     * Portable
